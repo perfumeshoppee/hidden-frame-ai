@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08070d">
+<title>Hidden Frame AI</title>
+<meta name="description" content="Hidden Frame AI — истории и AI-сериалы, где зритель влияет на продолжение.">
+<style>
+:root{--bg:#08070d;--card:#12101b;--text:#f7f4ff;--muted:#aaa3b9;--accent:#9b5cff;--accent2:#5c7cff;--line:#262136}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -10%,#241347 0,#0b0812 34%,var(--bg) 70%);color:var(--text)}
+a{text-decoration:none;color:inherit}.wrap{width:min(1100px,calc(100% - 30px));margin:auto}
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:#08070dcc;border-bottom:1px solid #ffffff0e}
+.nav{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.04em}.brand span{color:#ad78ff}
+.links{display:flex;gap:10px}.btn{border:1px solid var(--line);background:#ffffff0a;padding:11px 15px;border-radius:14px;font-weight:700}.primary{border:0;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 35px #7d4cff42}
+.hero{padding:80px 0 48px;text-align:center}.eyebrow{display:inline-block;padding:7px 12px;border:1px solid #9b5cff55;border-radius:999px;color:#c8a8ff;background:#9b5cff12;font-size:13px;font-weight:800}
+h1{font-size:clamp(44px,9vw,88px);line-height:.92;margin:22px 0 18px;letter-spacing:-.055em}h1 span{background:linear-gradient(90deg,#fff,#b987ff,#718bff);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:680px;margin:0 auto 28px;color:var(--muted);font-size:clamp(17px,3vw,21px);line-height:1.55}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+section{padding:48px 0}.title{font-size:34px;margin:0 0 8px}.sub{color:var(--muted);margin:0 0 24px;line-height:1.5}
+.feature{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}.card{background:linear-gradient(145deg,#151120,#0e0c14);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 18px 55px #0005}
+.visual{min-height:410px;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;background:radial-gradient(circle at 75% 20%,#7845ff55,transparent 33%),linear-gradient(145deg,#191126,#0c0a10)}
+.badge{align-self:flex-start;background:#ffffff12;border:1px solid #ffffff1c;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}.visual h2{font-size:45px;margin:14px 0 8px}.visual p{color:#c7c0d3;max-width:520px}
+.info{padding:28px}.info h3{font-size:27px;margin:0 0 12px}.info p{color:var(--muted);line-height:1.6}.quote{padding:18px;border-radius:18px;background:#ffffff08;border:1px solid #ffffff0d;margin-top:20px;font-weight:700}
+.vote{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.option{padding:22px;cursor:pointer;transition:.2s}.option:hover{transform:translateY(-3px);border-color:#8d60d7}.option h3{margin:8px 0}.option p{color:var(--muted);font-size:14px}.option.selected{outline:2px solid var(--accent);background:#9b5cff13}
+.support{text-align:center;padding:42px;background:radial-gradient(circle at 50% 0,#6634bd44,transparent 55%),#100d17}.amounts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0}.amount{min-width:110px}
+.socials{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.social{padding:20px;text-align:center;font-weight:800}
+footer{padding:35px 0 50px;text-align:center;color:#777183;font-size:13px}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);padding:13px 18px;background:#f5f1ff;color:#17121f;border-radius:14px;font-weight:800;transition:.3s;z-index:20}.toast.show{transform:translate(-50%,0)}
+@media(max-width:760px){.links .hide{display:none}.hero{padding-top:58px}.feature{grid-template-columns:1fr}.visual{min-height:360px}.vote{grid-template-columns:1fr}.socials{grid-template-columns:1fr 1fr}.visual h2{font-size:38px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap nav"><div class="brand">HIDDEN FRAME <span>AI</span></div><div class="links"><a class="btn hide" href="#stories">Истории</a><a class="btn primary" href="#support">Поддержать</a></div></div></nav>
+
+<header class="hero wrap">
+<div class="eyebrow">AI STORIES • HIDDEN FRAME</div>
+<h1>Ты не просто смотришь.<br><span>Ты влияешь на историю.</span></h1>
+<p>Короткие AI-сериалы, персонажи, тайны и выборы зрителей. Здесь собраны истории Hidden Frame AI и то, что будет дальше.</p>
+<div class="actions"><a class="btn primary" href="#stories">Смотреть истории</a><a class="btn" href="#vote">Голосовать</a></div>
+</header>
+
+<main>
+<section id="stories"><div class="wrap">
+<h2 class="title">Сейчас в центре внимания</h2><p class="sub">Новый сериал Hidden Frame AI.</p>
+<div class="feature">
+<div class="card visual"><span class="badge">НОВЫЙ СЕРИАЛ</span><h2>Идеальный парень</h2><p>Для всех он красивый, успешный и заботливый. Но Аня постепенно замечает: его «забота» всё больше похожа на контроль.</p></div>
+<div class="card info"><h3>Макс × Аня</h3><p>Одежда. Ревность. Телефон. Маленькие вещи, которые сначала легко принять за любовь. На публике Макс остаётся идеальным — и именно поэтому всё становится сложнее.</p><div class="quote">«Тогда я ещё думала, что контроль — это просто его способ любить.»</div></div>
+</div>
+</div></section>
+
+<section id="vote"><div class="wrap">
+<h2 class="title">Что смотреть дальше?</h2><p class="sub">Выбери историю. Голос сохраняется на этом устройстве.</p>
+<div class="vote">
+<div class="card option" data-vote="school"><small>01</small><h3>Тайны 10 класса</h3><p>Школа, отношения, секреты и то, о чём никто не должен был узнать.</p></div>
+<div class="card option" data-vote="ideal"><small>02</small><h3>Идеальный парень</h3><p>Когда забота постепенно превращается в контроль.</p></div>
+<div class="card option" data-vote="house"><small>03</small><h3>Дом, в который не стоило переезжать</h3><p>Семья получает новый дом. Вместе с ним — кое-что ещё.</p></div>
+</div>
+</div></section>
+
+<section id="support"><div class="wrap"><div class="card support">
+<h2 class="title">Помоги истории продолжаться 💜</h2><p class="sub">Твоя поддержка помогает выпускать новые серии быстрее. Даже небольшой вклад реально двигает проект дальше.</p>
+<div class="amounts"><a class="btn amount" href="#" onclick="support(event)">50 ₴</a><a class="btn amount primary" href="#" onclick="support(event)">100 ₴</a><a class="btn amount" href="#" onclick="support(event)">250 ₴</a></div>
+<small style="color:#827b8d">Безопасная оплата через Donatello · от 10 ₴</small>
+</div></div></section>
+
+<section><div class="wrap"><h2 class="title">Смотри продолжение</h2><p class="sub">Hidden Frame AI в социальных сетях.</p>
+<div class="socials">
+<a class="card social" href="https://www.tiktok.com/@hidden.frame.ai" target="_blank">TikTok</a>
+<a class="card social" href="https://www.youtube.com/@hidden.frameai" target="_blank">YouTube</a>
+<a class="card social" href="https://www.instagram.com/hidden.frame.ai/" target="_blank">Instagram</a>
+<a class="card social" href="https://www.facebook.com/share/1J1Mt2fgM5/" target="_blank">Facebook</a>
+</div></div></section>
+</main>
+
+<footer class="wrap">© 2026 Hidden Frame AI • Истории, созданные с помощью AI</footer>
+<div class="toast" id="toast"></div>
+<script>
+const toast=document.getElementById('toast');
+function say(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+document.querySelectorAll('.option').forEach(x=>{
+ if(localStorage.getItem('hf_vote')===x.dataset.vote)x.classList.add('selected');
+ x.onclick=()=>{document.querySelectorAll('.option').forEach(y=>y.classList.remove('selected'));x.classList.add('selected');localStorage.setItem('hf_vote',x.dataset.vote);say('Голос сохранён 💜')}
+});
+function support(e){e.preventDefault();say('Добавь сюда свою ссылку Donatello — и кнопка будет вести на оплату 🔥')}
+</script>
+</body></html>
