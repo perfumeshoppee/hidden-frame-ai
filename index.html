@@ -60,8 +60,13 @@ footer{padding:35px 0 50px;text-align:center;color:#777183;font-size:13px}
 
 <section id="support"><div class="wrap"><div class="card support">
 <h2 class="title">Помоги истории продолжаться 💜</h2><p class="sub">Твоя поддержка помогает выпускать новые серии быстрее. Даже небольшой вклад реально двигает проект дальше.</p>
-<div class="amounts"><a class="btn amount" href="#" onclick="support(event)">50 ₴</a><a class="btn amount primary" href="#" onclick="support(event)">100 ₴</a><a class="btn amount" href="#" onclick="support(event)">250 ₴</a></div>
-<small style="color:#827b8d">Безопасная оплата через Donatello · от 10 ₴</small>
+<div class="amounts">
+<a class="btn amount" href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener noreferrer">50 ₴</a>
+<a class="btn amount primary" href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener noreferrer">100 ₴</a>
+<a class="btn amount" href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener noreferrer">250 ₴</a>
+<a class="btn amount" href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener noreferrer">Другая сумма</a>
+</div>
+<small style="color:#827b8d">Безопасная оплата через Donatello · сумму выбираешь на странице оплаты</small>
 </div></div></section>
 
 <section><div class="wrap"><h2 class="title">Смотри продолжение</h2><p class="sub">Hidden Frame AI в социальных сетях.</p>
@@ -82,6 +87,5 @@ document.querySelectorAll('.option').forEach(x=>{
  if(localStorage.getItem('hf_vote')===x.dataset.vote)x.classList.add('selected');
  x.onclick=()=>{document.querySelectorAll('.option').forEach(y=>y.classList.remove('selected'));x.classList.add('selected');localStorage.setItem('hf_vote',x.dataset.vote);say('Голос сохранён 💜')}
 });
-function support(e){e.preventDefault();say('Добавь сюда свою ссылку Donatello — и кнопка будет вести на оплату 🔥')}
 </script>
 </body></html>
