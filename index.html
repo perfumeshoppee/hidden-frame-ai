@@ -9,12 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #141414;
-            --text-color: #ededed;
-            --text-muted: #888888;
-            --gold: #d4af37;
-            --border-color: #222222;
+            --bg-color: #ffffff;
+            --card-bg: #f8f9fa;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --gold: #b8860b;
+            --border-color: #e5e5e5;
+            --accent-light: #fef9e7;
         }
 
         * {
@@ -31,7 +32,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -42,7 +43,7 @@
             padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
             z-index: 100;
         }
@@ -53,18 +54,38 @@
             align-items: center;
         }
 
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
         .logo {
             font-weight: 700;
             letter-spacing: 2px;
             color: var(--text-color);
-            text-decoration: none;
             font-size: 1rem;
-            cursor: pointer;
         }
 
         .nav {
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .nav a {
@@ -77,6 +98,7 @@
 
         .nav a:hover, .nav a.active {
             color: var(--text-color);
+            font-weight: 500;
         }
 
         /* Секции и виды */
@@ -95,9 +117,10 @@
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
 
         .hero h1 span {
@@ -106,8 +129,11 @@
 
         .hero-subtitle {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .social-buttons {
@@ -124,34 +150,36 @@
         }
 
         .section h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 30px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Карточки */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
             color: var(--text-color);
             display: flex;
             flex-direction: column;
             position: relative;
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .card:hover {
             border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .status {
@@ -160,6 +188,7 @@
             letter-spacing: 1px;
             color: var(--text-muted);
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .status.active {
@@ -167,13 +196,13 @@
         }
 
         .card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 10px;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 20px;
             flex-grow: 1;
         }
@@ -181,11 +210,54 @@
         .link-arrow {
             color: var(--text-color);
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .link-arrow.disabled {
             color: var(--text-muted);
+        }
+
+        /* Парфюмерная витрина (из базы проектов) */
+        .perfume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .perfume-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .perfume-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .perfume-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .perfume-brand {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .perfume-price {
+            font-weight: 700;
+            margin-top: 10px;
+            font-size: 1rem;
         }
 
         /* Голосование */
@@ -197,21 +269,22 @@
         .vote-options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-width: 500px;
+            gap: 12px;
+            max-width: 600px;
         }
 
         /* Кнопки */
         .btn {
             padding: 12px 24px;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             text-align: center;
             border: 1px solid transparent;
             transition: all 0.2s;
+            font-weight: 500;
         }
 
         .btn-outline {
@@ -222,6 +295,7 @@
 
         .btn-outline:hover {
             border-color: var(--text-color);
+            background: var(--card-bg);
         }
 
         .btn-vote {
@@ -233,34 +307,43 @@
 
         .btn-vote:hover {
             border-color: var(--gold);
+            background: var(--accent-light);
         }
 
         .btn-gold {
             background: var(--gold);
-            color: #000;
+            color: #fff;
             font-weight: 600;
         }
 
         .btn-gold:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
 
         /* Услуги */
         .services-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
+        .service-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
         .service-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
             color: var(--gold);
         }
 
         .service-item p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         /* Каталог историй */
@@ -279,26 +362,29 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
         .cat-btn.active, .cat-btn:hover {
             color: var(--text-color);
             border-color: var(--gold);
+            background: var(--accent-light);
         }
 
         .badge {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            background: rgba(212, 175, 55, 0.1);
+            background: var(--accent-light);
             color: var(--gold);
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 4px;
             margin-bottom: 10px;
+            font-weight: 600;
             width: max-content;
         }
 
@@ -308,64 +394,70 @@
         }
 
         .story-content {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .story-content h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
+            line-height: 1.3;
         }
 
         .story-meta {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 30px;
         }
 
         .story-cover {
             width: 100%;
-            height: 350px;
+            height: 380px;
             background: var(--card-bg);
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
             margin-bottom: 40px;
+            font-weight: 500;
         }
 
         .story-content p {
             margin-bottom: 25px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
+            color: #222;
         }
 
         /* Рекламные блоки по ТЗ */
         .ad-block {
             margin: 40px 0;
-            padding: 20px;
+            padding: 25px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 10px;
             text-align: center;
         }
 
         .ad-label {
             display: block;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             color: var(--text-muted);
             margin-bottom: 10px;
             letter-spacing: 1px;
+            font-weight: 600;
         }
 
         .ad-banner {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border: 1px dashed var(--border-color);
-            padding: 20px;
+            padding: 25px;
+            border-radius: 6px;
+            background: #fff;
         }
 
         .related-stories {
@@ -375,7 +467,7 @@
         }
 
         .related-stories h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
         }
 
@@ -384,13 +476,14 @@
         }
 
         .related-stories li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .related-stories a {
             color: var(--text-color);
             text-decoration: none;
             cursor: pointer;
+            font-weight: 500;
         }
 
         .related-stories a:hover {
@@ -400,8 +493,9 @@
         /* Футер */
         .footer {
             border-top: 1px solid var(--border-color);
-            padding: 40px 0;
-            margin-top: 60px;
+            padding: 50px 0;
+            margin-top: 80px;
+            background: var(--card-bg);
         }
 
         .footer-content {
@@ -413,27 +507,27 @@
         }
 
         .footer-info h3 {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             letter-spacing: 1px;
             margin-bottom: 10px;
         }
 
         .footer-info p, .footer-info a {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-decoration: none;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .footer-links a:hover {
@@ -442,18 +536,22 @@
 
         .copyright {
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Шапка -->
+    <!-- Шапка с фирменным логотипом -->
     <header class="header">
         <div class="container header-container">
-            <a onclick="navigateTo('home')" class="logo" id="logoText">HIDDEN FRAME AI</a>
+            <a onclick="navigateTo('home')" class="logo-wrap">
+                <div class="logo-icon">HF</div>
+                <span class="logo" id="logoText">HIDDEN FRAME AI</span>
+            </a>
             <nav class="nav">
                 <a onclick="navigateTo('home')">Главная</a>
+                <a onclick="navigateTo('home-projects')">Проекты & Магазин</a>
                 <a onclick="navigateTo('home-serials')">Сериалы</a>
                 <a onclick="navigateTo('stories')">Истории</a>
                 <a onclick="navigateTo('home-support')">Поддержать</a>
@@ -463,18 +561,61 @@
         </div>
     </header>
 
-    <!-- ВИД 1: ГЛАВНАЯ СТРАНИЦА -->
+    <!-- ВИД 1: ГЛАВНАЯ СТРАНИЦА (Светлая тема + максимум информации из проектов) -->
     <div id="view-home" class="page-view active">
         <!-- Первый экран -->
         <section class="hero">
             <div class="container">
                 <h1>Истории, созданные с помощью AI.<br><span>Смотри. Читай. Проживай.</span></h1>
-                <p class="hero-subtitle">Проекты на стыке искусственного интеллекта и кинематографа.</p>
+                <p class="hero-subtitle">Официальный портал экосистемы Hidden Frame AI: кинематографические сериалы, интерактивные лонгриды, эксклюзивный парфюмерный проект perfumeshoppee.pl и многое другое.</p>
                 <div class="social-buttons">
-                    <a href="https://www.tiktok.com/@hidden.frame.ai" target="_blank" class="btn btn-outline">TikTok</a>
-                    <a href="https://www.instagram.com/hidden.frame.ai" target="_blank" class="btn btn-outline">Instagram</a>
-                    <a href="https://www.youtube.com/@hidden.frameai" target="_blank" class="btn btn-outline">YouTube</a>
+                    <a href="https://www.tiktok.com/@hidden.frame.ai" target="_blank" class="btn btn-outline">TikTok (@hidden.frame.ai)</a>
+                    <a href="https://www.instagram.com/@hidden.frame.ai" target="_blank" class="btn btn-outline">Instagram (@hidden.frame.ai)</a>
+                    <a href="https://www.youtube.com/@hidden.frameai" target="_blank" class="btn btn-outline">YouTube (@hidden.frameai)</a>
                     <a href="https://www.facebook.com" target="_blank" class="btn btn-outline">Facebook</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Проекты и Парфюмерный магазин perfumeshoppee.pl -->
+        <section id="home-projects" class="section">
+            <div class="container">
+                <h2>Наши проекты & Парфюмерный бутик</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Интеграция нашего веб-проекта <strong>perfumeshoppee.pl</strong> и нишевых ароматов:</p>
+                
+                <div class="perfume-grid">
+                    <div class="perfume-card">
+                        <div>
+                            <div class="perfume-brand">Marc-Antoine Barrois</div>
+                            <h4>Ganymede</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Шафран, замша, минеральные ноты. Холодное, дорогое звучание.</p>
+                        </div>
+                        <div class="perfume-price">от 31 €</div>
+                    </div>
+                    <div class="perfume-card">
+                        <div>
+                            <div class="perfume-brand">Yves Saint Laurent</div>
+                            <h4>Libre</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Лаванда, мадагаскарская ваніль, амбра. Чистый и стильный аромат.</p>
+                        </div>
+                        <div class="perfume-price">от 18 €</div>
+                    </div>
+                    <div class="perfume-card">
+                        <div>
+                            <div class="perfume-brand">Kayali</div>
+                            <h4>Yum Pistachio Gelato</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Фісташки, морозиво, збиті вершки, цукрова вата. Гурманський вибух.</p>
+                        </div>
+                        <div class="perfume-price">от 15 €</div>
+                    </div>
+                    <div class="perfume-card">
+                        <div>
+                            <div class="perfume-brand">Tiziana Terenzi</div>
+                            <h4>Kirkè</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Маракуйя, персик, груша, мускус. Сонячний літній фрукт.</p>
+                        </div>
+                        <div class="perfume-price">от 24 €</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -487,13 +628,13 @@
                     <div class="card" onclick="window.open('https://www.tiktok.com/@hidden.frame.ai', '_blank')">
                         <span class="status active">Выходит</span>
                         <h3>Проект «Альфа»</h3>
-                        <p>Драматические короткие эпизоды о выборе в критических ситуациях.</p>
+                        <p>Драматические короткие эпизоды о выборе в критических ситуациях на TikTok и Instagram Shorts.</p>
                         <span class="link-arrow">Смотреть в TikTok →</span>
                     </div>
                     <div class="card">
                         <span class="status">Скоро</span>
                         <h3>Мистический город</h3>
-                        <p>Тайны, скрытые за фасадом обычного провинциального городка.</p>
+                        <p>Тайны и мрачные секреты, скрытые за фасадом обычного провинциального городка.</p>
                         <span class="link-arrow disabled">В разработке</span>
                     </div>
                 </div>
@@ -503,11 +644,11 @@
         <!-- Голосование -->
         <section class="section vote-section">
             <div class="container">
-                <h2>Что смотреть дальше?</h2>
-                <p>Голосуйте за сюжеты, которые появятся в наших соцсетях.</p>
+                <h2>Что снимать и показывать дальше?</h2>
+                <p>Ваш голос определяет вектор развития наших будущих AI-сериалов.</p>
                 <div class="vote-options" id="voteBox">
-                    <button class="btn btn-vote" onclick="vote(this)">Триллер про изоляцию в космосе (45%)</button>
-                    <button class="btn btn-vote" onclick="vote(this)">Драма о семейных секретах (55%)</button>
+                    <button class="btn btn-vote" onclick="vote(this)">Триллер про изоляцию в закрытой космической станции (45%)</button>
+                    <button class="btn btn-vote" onclick="vote(this)">Драма о сложных семейных секретах и наследстве (55%)</button>
                 </div>
             </div>
         </section>
@@ -516,24 +657,23 @@
         <section id="home-support" class="section support-section">
             <div class="container">
                 <h2>Поддержать Hidden Frame</h2>
-                <p>Создание качественного AI-контента требует ресурсов. Вы можете помочь проекту развиваться.</p>
-                <!-- Ссылка Donatello вставляется сюда, когда будет готова -->
-                <a href="#" target="_blank" class="btn btn-gold">Поддержать через Donatello</a>
+                <p>Создание масштабного контента и развитие платформ требует ресурсов. Вы можете поддержать проект.</p>
+                <a href="#" target="_blank" class="btn btn-gold" style="margin-top: 15px;">Поддержать через Donatello</a>
             </div>
         </section>
 
         <!-- Услуги -->
         <section id="home-services" class="section">
             <div class="container">
-                <h2>Что мы делаем</h2>
+                <h2>Что мы делаем (Услуги)</h2>
                 <div class="services-list">
                     <div class="service-item">
                         <h3>AI-продакшн полного цикла</h3>
-                        <p>Создание визуального контента, концептов, коротких роликов и сериалов с использованием передовых нейросетей.</p>
+                        <p>Создание кинематографического визуального контента, генерация персонажей, коротких роликов и сериалов с использованием передовых нейросетей.</p>
                     </div>
                     <div class="service-item">
                         <h3>Сценарии и тексты</h3>
-                        <p>Написание увлекательных историй, лонгридов и сценариев под любые задачи.</p>
+                        <p>Написание захватывающих драматических и жизненных историй, лонгридов и сценариев под любые digital-задачи.</p>
                     </div>
                 </div>
             </div>
@@ -544,7 +684,7 @@
     <div id="view-stories" class="page-view">
         <section class="stories-header">
             <div class="container">
-                <h1>Каталог историй</h1>
+                <h1>Каталог историй Hidden Frame</h1>
                 <div class="categories">
                     <button class="cat-btn active">Новые</button>
                     <button class="cat-btn">Любовь</button>
@@ -580,7 +720,7 @@
                     <div class="story-meta">Опубликовано: 2026 · Время чтения: ~4 мин</div>
                     
                     <div class="story-cover">
-                        <div class="cover-placeholder">Обложка истории (Фото / AI-арт)</div>
+                        Обложка истории (Фирменный AI-арт Hidden Frame)
                     </div>
 
                     <p>Я думала, мы будем доживать старость вместе в нашей просторной трешке. Дети уже выросли, разъехались по университетам, квартира принадлежала нам с Андреем пополам. Десять лет казались прочным фундаментом, который не сможет разрушить ничто.</p>
@@ -591,7 +731,7 @@
                     <div class="ad-block">
                         <span class="ad-label">Реклама</span>
                         <div class="ad-banner">
-                            <p>🔥 Место под рекламный баннер / партнёрскую ссылку (Google AdSense / Direct)</p>
+                            <p>🔥 Партнерский блок / Рекламное предложение perfumeshoppee.pl</p>
                         </div>
                     </div>
 
@@ -636,8 +776,9 @@
     <footer id="contacts" class="footer">
         <div class="container footer-content">
             <div class="footer-info">
-                <h3>HIDDEN FRAME AI</h3>
+                <h3>HIDDEN FRAME AI & PERFUME SHOPPEE</h3>
                 <p>Email: <a href="mailto:pixvers664@gmail.com">pixvers664@gmail.com</a></p>
+                <p>Домен: hiddenframe.pp.ua / perfumeshoppee.pl</p>
             </div>
             <div class="footer-links">
                 <a href="https://www.instagram.com/hidden.frame.ai" target="_blank">Instagram</a>
@@ -653,23 +794,18 @@
 
     <script>
         function navigateTo(viewName) {
-            // Скрываем все виды
             document.querySelectorAll('.page-view').forEach(el => {
                 el.classList.remove('active');
             });
 
-            // Показываем нужный
             const target = document.getElementById('view-' + (viewName === 'home' ? 'home' : viewName === 'stories' ? 'stories' : viewName === 'story-muzh' ? 'story-muzh' : 'home'));
             if (target) {
                 target.classList.add('active');
                 window.scrollTo(0, 0);
             }
 
-            // Изменяем логотип в зависимости от раздела
             const logo = document.getElementById('logoText');
-            if (viewName === 'stories') {
-                logo.innerText = 'HIDDEN FRAME STORIES';
-            } else if (viewName === 'story-muzh') {
+            if (viewName === 'stories' || viewName === 'story-muzh') {
                 logo.innerText = 'HIDDEN FRAME STORIES';
             } else {
                 logo.innerText = 'HIDDEN FRAME AI';
@@ -678,17 +814,21 @@
 
         function vote(button) {
             const box = document.getElementById('voteBox');
-            box.innerHTML = '<p style="color: var(--gold);">Спасибо за ваш голос! Результаты учтены.</p>';
+            box.innerHTML = '<p style="color: var(--gold); font-weight: 500;">Спасибо за ваш голос! Результаты учтены в системе.</p>';
         }
 
-        // Поддержка переходов по якорям из меню главной
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', (e) => {
                 const text = link.innerText;
-                if (text === 'Сериалы' || text === 'Поддержать' || text === 'Услуги' || text === 'Контакты') {
+                if (text.includes('Проекты') || text.includes('Сериалы') || text.includes('Поддержать') || text.includes('Услуги') || text.includes('Контакты')) {
                     navigateTo('home');
                     setTimeout(() => {
-                        const targetId = text === 'Сериалы' ? 'home-serials' : text === 'Поддержать' ? 'home-support' : text === 'Услуги' ? 'home-services' : 'contacts';
+                        let targetId = 'home-projects';
+                        if (text.includes('Сериалы')) targetId = 'home-serials';
+                        else if (text.includes('Поддержать')) targetId = 'home-support';
+                        else if (text.includes('Услуги')) targetId = 'home-services';
+                        else if (text.includes('Контакты')) targetId = 'contacts';
+                        
                         const el = document.getElementById(targetId);
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }, 100);
