@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#07070b">
+    <meta name="description" content="Hidden Frame AI — короткие AI-сериалы, истории, голосования и создание AI-контента.">
+
+    <meta property="og:title" content="Hidden Frame AI">
+    <meta property="og:description" content="Ты не просто смотришь. Ты влияешь на историю.">
+    <meta property="og:type" content="website">
+
+    <title>Hidden Frame AI — истории, которые выбираешь ты</title>
+
+    <style>
+        :root {
+            --background: #07070b;
+            --background-light: #0d0c12;
+            --card: #121119;
+            --card-hover: #181620;
+            --text: #f7f4ee;
+            --muted: #aaa5b2;
+            --border: rgba(255, 255, 255, 0.09);
+            --purple: #d2aa4a;
+            --purple-dark: #8f6b1f;
+            --gold: #edbd43;
+            --gold-dark: #aa6d0b;
+            --danger: #d25971;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background: var(--background);
+            font-family: Inter, Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 44px));
+            margin: 0 auto;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(7, 7, 11, 0.86);
+            backdrop-filter: blur(18px);
+        }
+
+        .navigation {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(237, 189, 67, 0.45);
+            border-radius: 13px;
+            color: var(--gold);
+            background:
+                linear-gradient(145deg, rgba(139, 92, 246, 0.3), rgba(237, 189, 67, 0.12));
+            box-shadow: 0 8px 28px rgba(139, 92, 246, 0.2);
+            font-size: 20px;
+        }
+
+        .accent {
+            color: var(--gold);
+        }
+
+        .desktop-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            color: #cac5d1;
+            font-size: 14px;
+        }
+
+        .desktop-links a {
+            transition: 0.2s;
+        }
+
+        .desktop-links a:hover {
+            color: var(--gold);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 13px 20px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            color: white;
+            background: #15131c;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(237, 189, 67, 0.4);
+            background: #1d1926;
+        }
+
+        .button-gold {
+            border: 0;
+            color: #100d05;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            box-shadow: 0 10px 30px rgba(215, 156, 40, 0.22);
+        }
+
+        .button-gold:hover {
+            background: linear-gradient(135deg, #f8d36d, #bd7e11);
+        }
+
+        .menu-button {
+            width: 46px;
+            height: 46px;
+            display: none;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: white;
+            background: #15131c;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 0 0 18px;
+        }
+
+        .mobile-menu.open {
+            display: grid;
+            gap: 8px;
+        }
+
+        .mobile-menu a {
+            padding: 13px 15px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--card);
+        }
+
+        .hero {
+            min-height: 680px;
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            align-items: center;
+            gap: 55px;
+            padding: 80px 0;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            margin: 15px 0 24px;
+            font-size: clamp(44px, 6vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+        }
+
+        .hero-description {
+            max-width: 620px;
+            margin: 0;
+            color: #bcb7c3;
+            font-size: 19px;
+            line-height: 1.65;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-visual {
+            min-height: 500px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glow {
+            width: 320px;
+            height: 320px;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(119, 67, 219, 0.35);
+            filter: blur(90px);
+        }
+
+        .phone {
+            width: 275px;
+            height: 520px;
+            position: relative;
+            z-index: 2;
+            padding: 11px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 42px;
+            background: #15131b;
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.65);
+            transform: rotate(4deg);
+        }
+
+        .phone-screen {
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            padding: 24px;
+            border-radius: 32px;
+            background:
+                linear-gradient(0deg, rgba(5, 4, 9, 0.95), rgba(5, 4, 9, 0.05)),
+                radial-gradient(circle at 45% 22%, #9f83cb, transparent 22%),
+                linear-gradient(145deg, #352047, #15131e 45%, #9c6222);
+        }
+
+        .phone-screen::before {
+            content: "";
+            width: 95px;
+            height: 23px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            border-radius: 20px;
+            background: #09080c;
+            transform: translateX(-50%);
+        }
+
+        .phone-tag {
+            width: max-content;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 100px;
+            background: var(--purple);
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .phone h3 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.05;
+        }
+
+        .phone p {
+            margin: 10px 0 0;
+            color: #d0cbd5;
+            font-size: 13px;
+        }
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            margin: 8px 0 8px;
+            font-size: clamp(31px, 4vw, 44px);
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            max-width: 650px;
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .stories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .story {
+            min-height: 410px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: var(--card);
+            transition: 0.25s;
+        }
+
+        .story:hover {
+            transform: translateY(-5px);
+            border-color: rgba(237, 189, 67, 0.28);
+        }
+
+        .story::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(6, 5, 10, 0.98), transparent 70%);
+        }
+
+        .story-school {
+            background:
+                radial-gradient(circle at 65% 22%, rgba(124, 86, 190, 0.65), transparent 24%),
+                linear-gradient(145deg, #273146, #15131e 52%, #7a4f2e);
+        }
+
+        .story-ideal {
+            background:
+                radial-gradient(circle at 50% 22%, rgba(216, 159, 93, 0.75), transparent 22%),
+                linear-gradient(145deg, #291e2f, #17131d 52%, #544277);
+        }
+
+        .story-memory {
+            background:
+                radial-gradient(circle at 60% 22%, rgba(163, 112, 79, 0.55), transparent 25%),
+                linear-gradient(145deg, #172334, #19131c 50%, #69413c);
+        }
+
+        .story-number {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 80px;
+            font-weight: 900;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .tag {
+            display: inline-flex;
+            padding: 7px 10px;
+            border-radius: 100px;
+            color: white;
+            background: var(--purple);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+        }
+
+        .tag-completed {
+            background: #3c7459;
+        }
+
+        .tag-soon {
+            background: #9a6424;
+        }
+
+        .story h3 {
+            margin: 13px 0 9px;
+            font-size: 26px;
+        }
+
+        .story p {
+            margin: 0;
+            color: #bbb6c1;
+            font-size: 14px;
+        }
+
+        .vote-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .vote-card {
+            min-height: 270px;
+            display: flex;
+            flex-direction: column;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+        }
+
+        .vote-top {
+            min-height: 125px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .vote-card h3 {
+            margin: 10px 0 7px;
+            line-height: 1.2;
+        }
+
+        .vote-count {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .percentage {
+            color: var(--gold);
+            font-size: 33px;
+            font-weight: 900;
+        }
+
+        .progress {
+            height: 8px;
+            overflow: hidden;
+            margin: 16px 0;
+            border-radius: 20px;
+            background: #28242f;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--purple), var(--gold));
+            transition: width 0.5s;
+        }
+
+        .vote-button {
+            width: 100%;
+            min-height: 44px;
+            margin-top: auto;
+            border: 0;
+            border-radius: 11px;
+            color: white;
+            background: #292431;
+            font-weight: 850;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .vote-button:hover:not(:disabled) {
+            background: var(--purple);
+        }
+
+        .vote-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .vote-message {
+            min-height: 24px;
+            margin-top: 18px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .support-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 38px;
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 80% 50%, rgba(106, 46, 166, 0.34), transparent 40%),
+                var(--card);
+        }
+
+        .support-box h2 {
+            margin: 8px 0 8px;
+            font-size: 32px;
+        }
+
+        .support-box p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .money-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .money-buttons a {
+            padding: 13px 18px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: rgba(255, 255, 255, 0.025);
+            font-weight: 900;
+            transition: 0.2s;
+        }
+
+        .money-buttons a:hover {
+            border-color: var(--purple);
+            background: var(--purple);
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px;
+        }
+
+        .service {
+            min-height: 170px;
+            padding: 21px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--card);
+            transition: 0.2s;
+        }
+
+        .service:hover {
+            transform: translateY(-3px);
+            border-color: rgba(139, 92, 246, 0.45);
+            background: var(--card-hover);
+        }
+
+        .service-icon {
+            margin-bottom: 15px;
+            font-size: 27px;
+        }
+
+        .service b {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .service span {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .contact-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: var(--card);
+        }
+
+        .contact-box h2 {
+            margin: 8px 0;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer {
+            padding: 65px 0 30px;
+            border-top: 1px solid var(--border);
+            background: rgba(3, 3, 6, 0.45);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-description {
+            max-width: 430px;
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .footer h3 {
+            margin: 0 0 15px;
+            font-size: 16px;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 10px;
+            color: #bbb6c2;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+        }
+
+        .social-link {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--card);
+            font-size: 14px;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold);
+            background: var(--card-hover);
+        }
+
+        .copyright {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            color: #77717f;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 930px) {
+            .desktop-links,
+            .header-support {
+                display: none;
+            }
+
+            .menu-button {
+                display: grid;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-top: 70px;
+            }
+
+            .hero-visual {
+                min-height: 570px;
+            }
+
+            .stories,
+            .vote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .support-box,
+            .contact-box {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                width: min(100% - 30px, 1180px);
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 60px 0 35px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-buttons .button {
+                width: 100%;
+            }
+
+            .hero-visual {
+                min-height: 510px;
+            }
+
+            .phone {
+                width: 245px;
+                height: 470px;
+            }
+
+            .services,
+            .footer-grid,
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+
+            .support-box,
+            .contact-box {
+                padding: 25px 20px;
+            }
+
+            .money-buttons,
+            .money-buttons a,
+            .contact-buttons,
+            .contact-buttons .button {
+                width: 100%;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+        }
+    </style>
+
+<style>
+/* Clean Hidden Frame refresh */
+body{background:#0a0a0a!important}
+.header{background:rgba(10,10,10,.95)!important;backdrop-filter:blur(10px)!important}
+.glow{display:none!important}
+.logo-icon{background:#151515!important;border-color:rgba(226,189,98,.35)!important;box-shadow:none!important}
+.phone{background:#161616!important;box-shadow:0 22px 55px rgba(0,0,0,.38)!important}
+.button{border-radius:9px!important}
+.button-gold{box-shadow:none!important}
+.story,.vote-card,.service,.contact-box,.support-box,.social-link{border-radius:14px!important}
+</style>
+
+
+<style>
+/* Hidden Frame — simple minimal redesign */
+:root{
+  --background:#0d0d0d!important;
+  --background-light:#111!important;
+  --card:#151515!important;
+  --card-hover:#191919!important;
+  --text:#f4f4f1!important;
+  --muted:#a3a39e!important;
+  --border:rgba(255,255,255,.09)!important;
+  --purple:#d5b35a!important;
+  --purple-dark:#9a7a2f!important;
+  --gold:#d5b35a!important;
+  --gold-dark:#9a7a2f!important;
+}
+body{background:#0d0d0d!important}
+.header{background:#0d0d0d!important;border-bottom:1px solid var(--border)!important;backdrop-filter:none!important}
+.nav{height:68px!important}
+.logo-icon{width:38px!important;height:38px!important;border-radius:10px!important;background:#151515!important;box-shadow:none!important}
+.logo-text{font-size:15px!important;letter-spacing:.07em!important}
+.nav-links{gap:22px!important}
+.nav-links a{font-size:13px!important;color:#b7b7b2!important}
+.nav-links a:hover{color:#fff!important}
+.button{border-radius:8px!important;box-shadow:none!important}
+.button-primary{background:#1b1b1b!important}
+.button-primary:hover{background:#222!important}
+.button-gold{background:#d5b35a!important;color:#111!important;box-shadow:none!important}
+.hero{min-height:auto!important;padding:95px 0 70px!important}
+.hero-grid{grid-template-columns:1.12fr .88fr!important;gap:70px!important}
+.eyebrow{font-size:10px!important;letter-spacing:.15em!important}
+.hero h1{font-size:clamp(46px,6vw,72px)!important;line-height:1.01!important;letter-spacing:-.05em!important;max-width:720px!important}
+.hero p{font-size:16px!important;max-width:600px!important}
+.hero-actions{margin-top:28px!important}
+.glow{display:none!important}
+.hero-visual{min-height:390px!important}
+.phone{width:245px!important;height:390px!important;border-radius:24px!important;background:#161616!important;border:1px solid var(--border)!important;box-shadow:none!important;transform:rotate(2deg)!important}
+.phone-screen{border-radius:17px!important;background:linear-gradient(180deg,#34312b,#151515)!important}
+.phone-tag{background:#d5b35a!important;color:#111!important}
+section{padding:70px 0!important}
+.section-title{font-size:clamp(32px,4vw,48px)!important;letter-spacing:-.035em!important}
+.section-subtitle{font-size:14px!important}
+.story-grid{gap:14px!important}
+.story{min-height:390px!important;border-radius:12px!important;box-shadow:none!important}
+.story:hover{transform:translateY(-2px)!important}
+.story-school,.story-ideal,.story-memory{background:linear-gradient(180deg,#292929,#151515)!important}
+.tag{border-radius:6px!important;background:#d5b35a!important;color:#111!important}
+.tag-completed{background:#31513e!important;color:#fff!important}
+.tag-soon{background:#65542d!important;color:#fff!important}
+.support-box{border-radius:12px!important;background:#151515!important;box-shadow:none!important}
+.vote-card,.service,.contact-box,.social-link{border-radius:10px!important;box-shadow:none!important}
+.footer{background:#080808!important}
+@media(max-width:900px){
+ .hero{padding:70px 0 45px!important}
+ .hero-grid{gap:35px!important}
+ .hero-visual{min-height:340px!important}
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <nav class="navigation">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">◈</span>
+                <span>HIDDEN FRAME <span class="accent">AI</span></span>
+            </a>
+
+            <div class="desktop-links">
+                <a href="#stories">Сериалы</a>
+                <a href="stories/">Истории</a>
+                <a href="#vote">Голосование</a>
+                <a href="#support">Поддержать</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Связаться</a>
+            </div>
+
+            <a class="button button-gold header-support" href="#support">
+                Поддержать проект ♡
+            </a>
+
+            <button class="menu-button" id="menuButton" aria-label="Открыть меню">
+                ☰
+            </button>
+
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#stories">Сериалы</a>
+            <a href="stories/">Истории</a>
+            <a href="#vote">Голосование</a>
+            <a href="#support">Поддержать</a>
+            <a href="#services">Услуги</a>
+            <a href="#contact">Связаться</a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <div class="container">
+        <section class="hero">
+
+            <div>
+                <div class="eyebrow">AI STORIES · HIDDEN FRAME</div>
+
+                <h1>
+                    Ты не просто смотришь.
+                    <span class="accent">Ты влияешь на историю.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Короткие AI-сериалы с настоящими эмоциями,
+                    неожиданными поворотами и выбором зрителей.
+                    Здесь история продолжается вместе с тобой.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="button button-gold" href="#stories">
+                        ▶ Смотреть сериалы
+                    </a>
+
+                    <a class="button" href="#vote">
+                        Голосовать
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="glow"></div>
+
+                <div class="phone">
+                    <div class="phone-screen">
+                        <span class="phone-tag">НОВЫЙ СЕРИАЛ</span>
+                        <h3>Идеальный парень</h3>
+                        <p>
+                            Когда идеальная забота постепенно
+                            превращается в полный контроль.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <section id="stories">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">✦ НАШИ ИСТОРИИ</div>
+                <h2 class="section-title">Сериалы Hidden Frame AI</h2>
+                <p class="section-subtitle">
+                    Свои персонажи, секреты, отношения и неожиданные финалы.
+                </p>
+            </div>
+
+            <div class="stories">
+
+                <article class="story story-school">
+                    <span class="story-number">01</span>
+
+                    <div class="story-content">
+                        <span class="tag tag-soon">СКОРО</span>
+                        <h3>Тайны 10 класса</h3>
+                        <p>
+                            Школа, отношения и секреты,
+                            о которых никто не должен был узнать.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="story story-ideal">
+                    <span class="story-number">02</span>
+
+                    <div class="story-content">
+                        <span class="tag">НОВЫЙ СЕРИАЛ</span>
+                        <h3>Идеальный парень</h3>
+                        <p>
+                            Когда забота постепенно начинает
+                            становиться опасным контролем.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="story story-memory">
+                    <span class="story-number">03</span>
+
+                    <div class="story-content">
+                        <span class="tag tag-completed">ЗАВЕРШЁН</span>
+                        <h3>Он меня не узнал?</h3>
+                        <p>
+                            Любовь, потерянная память и правда,
+                            которую слишком долго скрывали.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="vote">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">✦ ТВОЙ ВЫБОР</div>
+                <h2 class="section-title">Что смотреть дальше?</h2>
+                <p class="section-subtitle">
+                    Результаты общие для всех посетителей.
+                    С одного браузера можно проголосовать один раз.
+                </p>
+            </div>
+
+            <div class="vote-grid" id="votes">
+                <div class="vote-card">Загружаем голосование...</div>
+            </div>
+
+            <div class="vote-message" id="voteMessage"></div>
+
+        </div>
+    </section>
+
+    <section id="support">
+        <div class="container">
+
+            <div class="support-box">
+
+                <div>
+                    <div class="eyebrow">💜 ПОДДЕРЖАТЬ HIDDEN FRAME AI</div>
+                    <h2>Помоги историям продолжаться</h2>
+                    <p>
+                        Поддержка помогает выпускать новые серии быстрее.
+                    </p>
+                </div>
+
+                <div class="money-buttons">
+                    <a target="_blank" rel="noopener"
+                       href="https://donatello.to/hiddenframeai?amount=50">
+                        50 ₴
+                    </a>
+
+                    <a target="_blank" rel="noopener"
+                       href="https://donatello.to/hiddenframeai?amount=100">
+                        100 ₴
+                    </a>
+
+                    <a target="_blank" rel="noopener"
+                       href="https://donatello.to/hiddenframeai?amount=250">
+                        250 ₴
+                    </a>
+
+                    <a target="_blank" rel="noopener"
+                       href="https://donatello.to/hiddenframeai">
+                        Другая сумма
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+
+            <div class="section-heading">
+                <div class="eyebrow">✦ НАШИ УСЛУГИ</div>
+                <h2 class="section-title">Можем сделать и для тебя</h2>
+                <p class="section-subtitle">
+                    От одной картинки до полноценного цифрового проекта.
+                </p>
+            </div>
+
+            <div class="services">
+
+                <div class="service">
+                    <div class="service-icon">🎬</div>
+                    <b>AI-видео</b>
+                    <span>
+                        Рекламные ролики, истории, короткие видео
+                        и оживление фотографий.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">📸</div>
+                    <b>AI-фотосессии</b>
+                    <span>
+                        Персональные фотографии, парные съёмки
+                        и стилизация персонажей.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">🎁</div>
+                    <b>Поздравления</b>
+                    <span>
+                        Именные ролики, истории и необычные
+                        цифровые подарки.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">🎵</div>
+                    <b>Персональные песни</b>
+                    <span>
+                        Уникальные AI-песни под человека,
+                        событие или праздник.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">📣</div>
+                    <b>Реклама</b>
+                    <span>
+                        AI-реклама для бизнеса, товаров,
+                        услуг и социальных сетей.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">✍️</div>
+                    <b>Сценарии</b>
+                    <span>
+                        Истории, диалоги и сценарии
+                        для роликов и сериалов.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">🌐</div>
+                    <b>Сайты</b>
+                    <span>
+                        Лендинги, каталоги, магазины
+                        и небольшие веб-проекты.
+                    </span>
+                </div>
+
+                <div class="service">
+                    <div class="service-icon">🤖</div>
+                    <b>Telegram-боты</b>
+                    <span>
+                        Боты для обучения, продаж,
+                        заявок и автоматизации.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+
+            <div class="contact-box">
+
+                <div>
+                    <div class="eyebrow">✦ СВЯЗАТЬСЯ</div>
+                    <h2>Есть идея или заказ?</h2>
+                    <p class="section-subtitle">
+                        Напиши нам удобным способом — обсудим твою идею.
+                    </p>
+                </div>
+
+                <div class="contact-buttons">
+
+                    <a class="button button-gold"
+                       href="mailto:pixvers664@gmail.com">
+                        ✉ Написать на почту
+                    </a>
+
+                    <a class="button"
+                       href="https://www.instagram.com/hidden.frame.ai/"
+                       target="_blank"
+                       rel="noopener">
+                        Instagram
+                    </a>
+
+                    <a class="button"
+                       href="https://www.tiktok.com/@hidden.frame.ai"
+                       target="_blank"
+                       rel="noopener">
+                        TikTok
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon">◈</span>
+                    <span>HIDDEN FRAME <span class="accent">AI</span></span>
+                </a>
+
+                <p class="footer-description">
+                    AI-сериалы, персонажи и истории,
+                    развитие которых выбирают сами зрители.
+                </p>
+            </div>
+
+            <div>
+                <h3>Навигация</h3>
+
+                <div class="footer-links">
+                    <a href="#stories">AI-сериалы</a>
+                    <a href="stories/">Читать истории</a>
+                    <a href="#vote">Голосование</a>
+                    <a href="#support">Поддержать проект</a>
+                    <a href="#services">Наши услуги</a>
+                    <a href="#contact">Связаться</a>
+                </div>
+            </div>
+
+            <div>
+                <h3>Наши социальные сети</h3>
+
+                <div class="social-links">
+
+                    <a class="social-link"
+                       href="https://www.tiktok.com/@hidden.frame.ai"
+                       target="_blank"
+                       rel="noopener">
+                        ♪ TikTok
+                    </a>
+
+                    <a class="social-link"
+                       href="https://www.instagram.com/hidden.frame.ai/"
+                       target="_blank"
+                       rel="noopener">
+                        ◎ Instagram
+                    </a>
+
+                    <a class="social-link"
+                       href="https://www.youtube.com/@hidden.frameai"
+                       target="_blank"
+                       rel="noopener">
+                        ▶ YouTube
+                    </a>
+
+                    <a class="social-link"
+                       href="https://www.facebook.com/share/1J1Mt2fgM5/"
+                       target="_blank"
+                       rel="noopener">
+                        f Facebook
+                    </a>
+
+                    <a class="social-link"
+                       href="mailto:pixvers664@gmail.com">
+                        ✉ Email
+                    </a>
+
+                    <div class="social-link" style="opacity: 0.55;">
+                        ✈ Telegram — скоро
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Hidden Frame AI · Истории, которые остаются в памяти.
+        </div>
+
+    </div>
+</footer>
+
+<script>
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+
+        document.body.classList.toggle("menu-open", isOpen);
+        menuButton.textContent = isOpen ? "✕" : "☰";
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+            document.body.classList.remove("menu-open");
+            menuButton.textContent = "☰";
+        });
+    });
+</script>
+
+<script type="module">
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getFirestore,
+        doc,
+        onSnapshot,
+        runTransaction
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBTSs7l3vfUvehBD-zVomGIGUEgGsbos3Y",
+        authDomain: "hidden-frame-ai.firebaseapp.com",
+        projectId: "hidden-frame-ai",
+        storageBucket: "hidden-frame-ai.firebasestorage.app",
+        messagingSenderId: "1098797096595",
+        appId: "1:1098797096595:web:b2be45606c59ac0e7f7766",
+        measurementId: "G-3Y6Z40KE86"
+    };
+
+    const options = [
+        {
+            key: "school",
+            name: "Тайны 10 класса"
+        },
+        {
+            key: "ideal",
+            name: "Идеальный парень"
+        },
+        {
+            key: "house",
+            name: "Дом, в который не стоило переезжать"
+        }
+    ];
+
+    const votesBox = document.getElementById("votes");
+    const voteMessage = document.getElementById("voteMessage");
+
+    let currentVotes = {};
+
+    function showMessage(text, color = "#aaa5b2") {
+        voteMessage.textContent = text;
+        voteMessage.style.color = color;
+    }
+
+    function renderVotes(data = {}) {
+        currentVotes = data;
+
+        const total = options.reduce((sum, option) => {
+            return sum + Number(data[option.key] || 0);
+        }, 0);
+
+        const userVote = localStorage.getItem("hf_vote");
+
+        votesBox.innerHTML = options.map((option, index) => {
+            const count = Number(data[option.key] || 0);
+            const percent = total
+                ? Math.round((count / total) * 100)
+                : 0;
+
+            const selected = userVote === option.key;
+            const disabled = Boolean(userVote);
+
+            let buttonText = "Голосовать";
+
+            if (selected) {
+                buttonText = "Твой выбор ✓";
+            } else if (disabled) {
+                buttonText = "Голос уже учтён";
+            }
+
+            return `
+                <article class="vote-card">
+                    <div class="vote-top">
+                        <div>
+                            <div class="eyebrow">0${index + 1}</div>
+                            <h3>${option.name}</h3>
+                            <div class="vote-count">
+                                ${count} ${getVoteWord(count)}
+                            </div>
+                        </div>
+
+                        <div class="percentage">${percent}%</div>
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            class="progress-fill"
+                            style="width: ${percent}%"
+                        ></div>
+                    </div>
+
+                    <button
+                        class="vote-button"
+                        data-vote="${option.key}"
+                        ${disabled ? "disabled" : ""}
+                    >
+                        ${buttonText}
+                    </button>
+                </article>
+            `;
+        }).join("");
+
+        if (userVote) {
+            showMessage("Твой голос сохранён 💜", "#edbd43");
+        }
+    }
+
+    function getVoteWord(number) {
+        const lastTwo = number % 100;
+        const last = number % 10;
+
+        if (lastTwo >= 11 && lastTwo <= 14) {
+            return "голосов";
+        }
+
+        if (last === 1) {
+            return "голос";
+        }
+
+        if (last >= 2 && last <= 4) {
+            return "голоса";
+        }
+
+        return "голосов";
+    }
+
+    try {
+        const app = initializeApp(firebaseConfig);
+        const database = getFirestore(app);
+        const pollReference = doc(database, "polls", "main");
+
+        onSnapshot(
+            pollReference,
+            snapshot => {
+                renderVotes(snapshot.exists() ? snapshot.data() : {});
+            },
+            error => {
+                console.error(error);
+                renderVotes(currentVotes);
+                showMessage(
+                    "Не удалось загрузить результаты голосования.",
+                    "#d25971"
+                );
+            }
+        );
+
+        votesBox.addEventListener("click", async event => {
+            const button = event.target.closest("[data-vote]");
+
+            if (!button) {
+                return;
+            }
+
+            const selectedOption = button.dataset.vote;
+
+            if (localStorage.getItem("hf_vote")) {
+                showMessage(
+                    "Ты уже голосовал на этом устройстве 💜",
+                    "#edbd43"
+                );
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Сохраняем...";
+
+            try {
+                await runTransaction(database, async transaction => {
+                    const snapshot = await transaction.get(pollReference);
+                    const data = snapshot.exists() ? snapshot.data() : {};
+
+                    const updatedVotes = {
+                        school: Number(data.school || 0),
+                        ideal: Number(data.ideal || 0),
+                        house: Number(data.house || 0),
+                        updatedAt: new Date()
+                    };
+
+                    updatedVotes[selectedOption] += 1;
+
+                    transaction.set(pollReference, updatedVotes);
+                });
+
+                localStorage.setItem("hf_vote", selectedOption);
+
+                showMessage(
+                    "Готово! Твой голос сохранён 💜",
+                    "#edbd43"
+                );
+
+                renderVotes({
+                    ...currentVotes,
+                    [selectedOption]:
+                        Number(currentVotes[selectedOption] || 0) + 1
+                });
+
+            } catch (error) {
+                console.error(error);
+
+                button.disabled = false;
+                button.textContent = "Голосовать";
+
+                showMessage(
+                    "Не удалось сохранить голос. Попробуй ещё раз.",
+                    "#d25971"
+                );
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        votesBox.innerHTML = `
+            <div class="vote-card">
+                Голосование временно недоступно.
+            </div>
+        `;
+
+        showMessage(
+            "Ошибка подключения к голосованию.",
+            "#d25971"
+        );
+    }
+</script>
+
+</body>
+</html>
