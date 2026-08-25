@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hidden Frame AI — истории, которые хочется дочитать</title>
+  <meta name="description" content="Hidden Frame AI — AI-сериалы, истории и проекты, развитие которых выбирают зрители.">
+  <meta property="og:title" content="Hidden Frame AI">
+  <meta property="og:description" content="Истории, которые хочется дочитать до конца.">
+  <meta property="og:image" content="assets/social-preview.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a href="./" class="logo"><img src="assets/logo.png" alt=""><span>HIDDEN FRAME <b>AI</b></span></a>
+    <nav class="desktop-nav">
+      <a href="#series">Сериалы</a><a href="stories/">Истории</a><a href="#vote">Голосование</a><a href="#social">Соцсети</a>
+    </nav>
+    <a href="#support" class="support-top">❤️ Поддержать</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <span class="eyebrow">HIDDEN FRAME AI</span>
+      <h1>Истории, которые <span>хочется дочитать.</span></h1>
+      <p>AI-сериалы, драмы и тайны. Смотри серии, читай продолжения и решай, что произойдёт дальше.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="stories/">Читать истории →</a>
+        <a class="btn secondary" href="#series">Смотреть сериалы</a>
+      </div>
+    </div>
+    <div class="hero-images">
+      <img src="assets/anya-max.jpg" class="hero-main" alt="Идеальный парень">
+      <div class="hero-label"><small>СЕЙЧАС ВЫХОДИТ</small><strong>Идеальный парень</strong></div>
+    </div>
+  </div>
+</section>
+
+<section id="support" class="support-section">
+  <div class="container">
+    <div class="support-card">
+      <div>
+        <span class="eyebrow">❤️ ПОДДЕРЖАТЬ ПРОЕКТ</span>
+        <h2>Помоги новым историям выходить чаще</h2>
+        <p>Поддержка идёт на AI-инструменты, создание новых серий, озвучку, изображения и развитие Hidden Frame AI.</p>
+        <small>Минимальная поддержка — от 10 ₴</small>
+      </div>
+      <div class="donations">
+        <a href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener" class="donate">20 ₴</a>
+        <a href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener" class="donate">50 ₴</a>
+        <a href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener" class="donate">100 ₴</a>
+        <a href="https://donatello.to/hiddenframeai" target="_blank" rel="noopener" class="donate main">Другая сумма →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="series" class="section">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">НАШИ СЕРИАЛЫ</span><h2>Истории Hidden Frame</h2></div><p>От первой встречи до последней тайны.</p></div>
+    <div class="series-grid">
+      <article class="series-card large"><img src="assets/anya-max.jpg" alt="Идеальный парень"><div class="series-overlay"><span class="status new">НОВЫЕ СЕРИИ</span><h3>Идеальный парень</h3><p>Аня верит, что Макс изменился. Но некоторые вещи слишком сложно скрывать.</p></div></article>
+      <article class="series-card"><img src="assets/lera-danya.jpg" alt="Он меня не узнал?"><div class="series-overlay"><span class="status finished">ЗАВЕРШЁН</span><h3>Он меня не узнал?</h3><p>Любовь, потерянная память и правда, которую скрывали два года.</p></div></article>
+      <article class="series-card"><img src="assets/school.jpg" alt="Тайны 10 класса"><div class="series-overlay"><span class="status soon">СКОРО</span><h3>Тайны 10 класса</h3><p>Новая школа, новые друзья и секреты, которые лучше было не узнавать.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="read-section">
+  <div class="container read-card">
+    <div><span class="eyebrow">НОВЫЙ ФОРМАТ</span><h2>Не все истории помещаются в минутное видео.</h2><p>Полные истории с продолжениями, неожиданными поворотами и финалами, которых нет в коротких постах.</p><a href="stories/" class="btn primary">Перейти к историям →</a></div>
+    <div class="read-photo"><img src="assets/future-series.jpg" alt="Истории Hidden Frame"></div>
+  </div>
+</section>
+
+<section id="vote" class="vote-section">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">ТВОЙ ВЫБОР</span><h2>Что снять следующим?</h2></div><p>Один голос с устройства. Результаты сохраняются в Firebase.</p></div>
+    <div class="vote-grid">
+      <button class="vote-card" data-vote="future"><span class="vote-emoji">📱</span><h3>Сообщение из будущего</h3><p>Мистика / драма</p><strong class="vote-result" id="result-future">Голосовать</strong></button>
+      <button class="vote-card" data-vote="school"><span class="vote-emoji">🎒</span><h3>Тайны 10 класса</h3><p>Школа / отношения</p><strong class="vote-result" id="result-school">Голосовать</strong></button>
+      <button class="vote-card" data-vote="house"><span class="vote-emoji">🏚️</span><h3>Дом</h3><p>Хоррор / тайна</p><strong class="vote-result" id="result-house">Голосовать</strong></button>
+    </div>
+    <p id="vote-message" class="vote-message" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="social" class="section">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">HIDDEN FRAME AI</span><h2>Мы в соцсетях</h2></div><p>Серии, новые проекты и продолжения.</p></div>
+    <div class="social-grid">
+      <a href="https://www.tiktok.com/@hidden.frame.ai" target="_blank" rel="noopener" class="social-card"><span>♪</span><div><strong>TikTok</strong><small>@hidden.frame.ai</small></div><b>→</b></a>
+      <a href="https://www.instagram.com/hidden.frame.ai/" target="_blank" rel="noopener" class="social-card"><span>◎</span><div><strong>Instagram</strong><small>@hidden.frame.ai</small></div><b>→</b></a>
+      <a href="https://www.youtube.com/@hidden.frameai" target="_blank" rel="noopener" class="social-card"><span>▶</span><div><strong>YouTube</strong><small>@hidden.frameai</small></div><b>→</b></a>
+      <a href="https://www.facebook.com/share/1J1Mt2fgM5/" target="_blank" rel="noopener" class="social-card"><span>f</span><div><strong>Facebook</strong><small>Hidden Frame AI</small></div><b>→</b></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer-grid"><div><div class="logo footer-logo"><img src="assets/logo.png" alt=""><span>HIDDEN FRAME <b>AI</b></span></div><p>Истории, созданные с помощью AI.</p></div><div class="footer-links"><a href="stories/">Истории</a><a href="#series">Сериалы</a><a href="#vote">Голосование</a><a href="#support">Поддержать</a></div></div><div class="container copyright">© 2026 Hidden Frame AI</div></footer>
+<script type="module" src="js/firebase.js"></script>
+</body>
+</html>
